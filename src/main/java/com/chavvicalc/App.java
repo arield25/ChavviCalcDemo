@@ -1,7 +1,10 @@
 package com.chavvicalc;
 
-// test change
-// test 1 change
+// Step 1: Setup Maven project and Hello World (already done)
+// Step 2: Added menu with quit command and display of A/B
+// Step 3: Implemented 'a' and 'b' commands
+// Step 4: Implemented '+' and '-' commands
+// Step 5: Implemented '*', '/', and 'c' commands
 
 import java.util.Scanner;
 
@@ -25,8 +28,6 @@ public class App {
             System.out.println("q - Quit the app");
             System.out.printf("Current values: A = %.3f, B = %.3f\n", A, B);
             
-
-
             // Read user input
             System.out.print("Enter a command: ");
             String input = scan.nextLine();
@@ -34,13 +35,12 @@ public class App {
                 command = Character.toLowerCase(input.charAt(0));
             }
 
-            // Execute command
            // Execute command
 switch (command) {
-    case 'q':
+    case 'q': // Step 2
         System.out.println("Thank you for using ChavviCalc!");
         break;
-    case 'a':
+    case 'a': // Step 3
         System.out.print("Enter a number for A: ");
         try {
             A = Float.parseFloat(scan.nextLine());
@@ -48,7 +48,7 @@ switch (command) {
             System.out.println("Invalid input! Please enter a number.");
         }
         break;
-    case 'b':
+    case 'b': // Step 3
         System.out.print("Enter a number for B: ");
         try {
             B = Float.parseFloat(scan.nextLine());
@@ -56,19 +56,19 @@ switch (command) {
             System.out.println("Invalid input! Please enter a number.");
         }
         break;
-    case '+':
+    case '+': // Step 4
         A = A + B;
         System.out.printf("A = A + B → %.3f\n", A);
         break;
-    case '-':
+    case '-': // Step 4
         A = A - B;
         System.out.printf("A = A - B → %.3f\n", A);
         break;
-    case '*':
+    case '*': // Step 5
         A = A * B;
         System.out.printf("A = A * B → %.3f\n", A);
         break;
-    case '/':
+    case '/': // Step 5
         if (B != 0) {
         A = A / B;
         System.out.printf("A = A / B → %.3f\n", A);
@@ -76,7 +76,7 @@ switch (command) {
         System.out.println("Error: Division by zero is not allowed!");
     }
         break;
-    case 'c':
+    case 'c': // Step 5
         A = 0;
         B = 0;
         System.out.println("Values cleared: A = 0, B = 0");
