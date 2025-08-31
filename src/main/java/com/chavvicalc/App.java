@@ -64,7 +64,24 @@ switch (command) {
         A = A - B;
         System.out.printf("A = A - B → %.3f\n", A);
         break;
-
+    case '*':
+        A = A * B;
+        System.out.printf("A = A * B → %.3f\n", A);
+        break;
+    case '/':
+        if (B != 0) {
+        A = A / B;
+        System.out.printf("A = A / B → %.3f\n", A);
+    } else {
+        System.out.println("Error: Division by zero is not allowed!");
+    }
+        break;
+    case 'c':
+        A = 0;
+        B = 0;
+        System.out.println("Values cleared: A = 0, B = 0");
+        break;
+        
     default:
         System.out.println("Unknown command!");
 }
