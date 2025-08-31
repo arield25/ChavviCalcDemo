@@ -24,6 +24,8 @@ public class App {
             System.out.println("c - Clear values (A=0, B=0)");
             System.out.println("q - Quit the app");
             System.out.printf("Current values: A = %.3f, B = %.3f\n", A, B);
+            System.out.println("VS Code → GitHub Desktop test");
+
 
             // Read user input
             System.out.print("Enter a command: ");
