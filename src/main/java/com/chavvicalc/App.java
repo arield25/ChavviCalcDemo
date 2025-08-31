@@ -24,7 +24,7 @@ public class App {
             System.out.println("c - Clear values (A=0, B=0)");
             System.out.println("q - Quit the app");
             System.out.printf("Current values: A = %.3f, B = %.3f\n", A, B);
-            System.out.println("VS Code → GitHub Desktop test");
+            
 
 
             // Read user input
@@ -35,11 +35,31 @@ public class App {
             }
 
             // Execute command
-            if (command == 'q') {
-                System.out.println("Thank you for using ChavviCalc!");
-            } else {
-                System.out.println("You entered: " + command);
-            }
+           // Execute command
+switch (command) {
+    case 'q':
+        System.out.println("Thank you for using ChavviCalc!");
+        break;
+    case 'a':
+        System.out.print("Enter a number for A: ");
+        try {
+            A = Float.parseFloat(scan.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter a number.");
+        }
+        break;
+    case 'b':
+        System.out.print("Enter a number for B: ");
+        try {
+            B = Float.parseFloat(scan.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter a number.");
+        }
+        break;
+    default:
+        System.out.println("Unknown command!");
+}
+
         }
 
         scan.close();
