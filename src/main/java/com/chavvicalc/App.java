@@ -56,6 +56,15 @@ switch (command) {
             System.out.println("Invalid input! Please enter a number.");
         }
         break;
+    case '+':
+        A = A + B;
+        System.out.printf("A = A + B → %.3f\n", A);
+        break;
+    case '-':
+        A = A - B;
+        System.out.printf("A = A - B → %.3f\n", A);
+        break;
+
     default:
         System.out.println("Unknown command!");
 }
