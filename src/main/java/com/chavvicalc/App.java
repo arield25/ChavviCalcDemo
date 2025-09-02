@@ -1,11 +1,5 @@
 package com.chavvicalc;
 
-// Step 1: Setup Maven project and Hello World (already done)
-// Step 2: Added menu with quit command and display of A/B
-// Step 3: Implemented 'a' and 'b' commands
-// Step 4: Implemented '+' and '-' commands
-// Step 5: Implemented '*', '/', and 'c' commands
-
 import java.util.Scanner;
 
 public class App {
@@ -15,9 +9,19 @@ public class App {
         char command = '_';
         Scanner scan = new Scanner(System.in);
 
+        // Pause and Clear screen before starting
+        System.out.println("Press Enter to start ChavviCalc...");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         while (command != 'q') {
+
             // Display menu
-            System.out.println("=== ChavviCalc Menu ===");
+            System.out.println("-----------------------------------------------");
+            System.out.println("ChavviCalc Menu");
+            System.out.println("-----------------------------------------------");
+            System.out.printf("A = %.3f       B = %.3f\n", A, B);
+            System.out.println("-----------------------------------------------");
             System.out.println("a - Enter number for A");
             System.out.println("b - Enter number for B");
             System.out.println("+ - A = A + B");
@@ -26,8 +30,8 @@ public class App {
             System.out.println("/ - A = A / B");
             System.out.println("c - Clear values (A=0, B=0)");
             System.out.println("q - Quit the app");
-            System.out.printf("Current values: A = %.3f, B = %.3f\n", A, B);
-            
+            System.out.println("-----------------------------------------------");
+
             // Read user input
             System.out.print("Enter a command: ");
             String input = scan.nextLine();
@@ -35,57 +39,66 @@ public class App {
                 command = Character.toLowerCase(input.charAt(0));
             }
 
-           // Execute command
-switch (command) {
-    case 'q': // Step 2
-        System.out.println("Thank you for using ChavviCalc!");
-        break;
-    case 'a': // Step 3
-        System.out.print("Enter a number for A: ");
-        try {
-            A = Float.parseFloat(scan.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input! Please enter a number.");
-        }
-        break;
-    case 'b': // Step 3
-        System.out.print("Enter a number for B: ");
-        try {
-            B = Float.parseFloat(scan.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input! Please enter a number.");
-        }
-        break;
-    case '+': // Step 4
-        A = A + B;
-        System.out.printf("A = A + B → %.3f\n", A);
-        break;
-    case '-': // Step 4
-        A = A - B;
-        System.out.printf("A = A - B → %.3f\n", A);
-        break;
-    case '*': // Step 5
-        A = A * B;
-        System.out.printf("A = A * B → %.3f\n", A);
-        break;
-    case '/': // Step 5
-        if (B != 0) {
-        A = A / B;
-        System.out.printf("A = A / B → %.3f\n", A);
-    } else {
-        System.out.println("Error: Division by zero is not allowed!");
-    }
-        break;
-    case 'c': // Step 5
-        A = 0;
-        B = 0;
-        System.out.println("Values cleared: A = 0, B = 0");
-        break;
-        
-    default:
-        System.out.println("Unknown command!");
-}
+            // Execute command
+            switch (command) {
+                case 'q':
+                    System.out.println("\nThank you for using Chavvi Calc");
+                    System.out.println("[Simple Calculator]:");
+                    break;
 
+                case 'a':
+                    System.out.print("Enter a number for A: ");
+                    try {
+                        A = Float.parseFloat(scan.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("ERROR: Invalid input! Please enter a number.");
+                    }
+                    break;
+
+                case 'b':
+                    System.out.print("Enter a number for B: ");
+                    try {
+                        B = Float.parseFloat(scan.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("ERROR: Invalid input! Please enter a number.");
+                    }
+                    break;
+
+                case '+':
+                    A = A + B;
+                    System.out.printf("Result: A = %.3f\n", A);
+                    break;
+
+                case '-':
+                    A = A - B;
+                    System.out.printf("Result: A = %.3f\n", A);
+                    break;
+
+                case '*':
+                    A = A * B;
+                    System.out.printf("Result: A = %.3f\n", A);
+                    break;
+
+                case '/':
+                    if (B != 0) {
+                        A = A / B;
+                        System.out.printf("Result: A = %.3f\n", A);
+                    } else {
+                        System.out.println("ERROR: Unable to divide by 0!");
+                    }
+                    break;
+
+                case 'c':
+                    A = 0;
+                    B = 0;
+                    System.out.println("Values cleared: A = 0, B = 0");
+                    break;
+
+                default:
+                    System.out.println("ERROR: Unknown command!");
+            }
+
+            System.out.println(); // Add an empty line for readability
         }
 
         scan.close();
