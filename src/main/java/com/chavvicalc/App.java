@@ -15,7 +15,6 @@ public class App {
         System.out.flush();
 
         while (command != 'q') {
-
             // Display menu
             System.out.println("-----------------------------------------------");
             System.out.println("ChavviCalc Menu");
@@ -38,7 +37,6 @@ public class App {
             if (input.length() > 0) {
                 command = Character.toLowerCase(input.charAt(0));
             }
-
             // Execute command
             switch (command) {
                 case 'q':
