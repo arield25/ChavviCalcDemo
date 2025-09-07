@@ -10,7 +10,6 @@ public class App {
         char command = '_';
         Scanner scan = new Scanner(System.in);
 
-        // Pause and clear screen before starting
         System.out.println("Press Enter to start ChavviCalc...");
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -20,22 +19,37 @@ public class App {
             command = getUserCommand(scan);
 
             switch (command) {
-                case 'q': quitApp();
-                case 'a': a = readNumber(scan, "a");
-                case 'b': b = readNumber(scan, "b");
-                case '+': a = add(a, b);
-                case '-': a = subtract(a, b);
-                case '*': a = multiply(a, b);
-                case '/': a = divide(a, b);
-                case 'c': {
+                case 'q':
+                    quitApp();
+                    break;
+                case 'a':
+                    a = readNumber(scan, "a");
+                    break;
+                case 'b':
+                    b = readNumber(scan, "b");
+                    break;
+                case '+':
+                    a = add(a, b);
+                    break;
+                case '-':
+                    a = subtract(a, b);
+                    break;
+                case '*':
+                    a = multiply(a, b);
+                    break;
+                case '/':
+                    a = divide(a, b);
+                    break;
+                case 'c':
                     a = 0;
                     b = 0;
                     clearValues();
-                }
-                default: System.out.println("ERROR: Unknown command!");
+                    break;
+                default:
+                    System.out.println("ERROR: Unknown command!");
             }
 
-            System.out.println(); // Add an empty line for readability
+            System.out.println(); // readability
         }
 
         scan.close();
@@ -72,7 +86,7 @@ public class App {
             return Float.parseFloat(scan.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Invalid input! Please enter a number.");
-            return 0; // default value if input is invalid
+            return 0;
         }
     }
 
