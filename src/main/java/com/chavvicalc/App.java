@@ -3,102 +3,114 @@ package com.chavvicalc;
 import java.util.Scanner;
 
 public class App {
+
     public static void main(String[] args) {
-        float A = 0;
-        float B = 0;
+        float a = 0;
+        float b = 0;
         char command = '_';
         Scanner scan = new Scanner(System.in);
 
-        // Pause and Clear screen before starting
+        // Pause and clear screen before starting
         System.out.println("Press Enter to start ChavviCalc...");
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
         while (command != 'q') {
-            // Display menu
-            System.out.println("-----------------------------------------------");
-            System.out.println("ChavviCalc Menu");
-            System.out.println("-----------------------------------------------");
-            System.out.printf("A = %.3f       B = %.3f\n", A, B);
-            System.out.println("-----------------------------------------------");
-            System.out.println("a - Enter number for A");
-            System.out.println("b - Enter number for B");
-            System.out.println("+ - A = A + B");
-            System.out.println("- - A = A - B");
-            System.out.println("* - A = A * B");
-            System.out.println("/ - A = A / B");
-            System.out.println("c - Clear values (A=0, B=0)");
-            System.out.println("q - Quit the app");
-            System.out.println("-----------------------------------------------");
+            printMenu(a, b);
+            command = getUserCommand(scan);
 
-            // Read user input
-            System.out.print("Enter a command: ");
-            String input = scan.nextLine();
-            if (input.length() > 0) {
-                command = Character.toLowerCase(input.charAt(0));
-            }
-            // Execute command
             switch (command) {
-                case 'q':
-                    System.out.println("\nThank you for using Chavvi Calc");
-                    System.out.println("[Simple Calculator]:");
-                    break;
-
-                case 'a':
-                    System.out.print("Enter a number for A: ");
-                    try {
-                        A = Float.parseFloat(scan.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("ERROR: Invalid input! Please enter a number.");
-                    }
-                    break;
-
-                case 'b':
-                    System.out.print("Enter a number for B: ");
-                    try {
-                        B = Float.parseFloat(scan.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("ERROR: Invalid input! Please enter a number.");
-                    }
-                    break;
-
-                case '+':
-                    A = A + B;
-                    System.out.printf("Result: A = %.3f\n", A);
-                    break;
-
-                case '-':
-                    A = A - B;
-                    System.out.printf("Result: A = %.3f\n", A);
-                    break;
-
-                case '*':
-                    A = A * B;
-                    System.out.printf("Result: A = %.3f\n", A);
-                    break;
-
-                case '/':
-                    if (B != 0) {
-                        A = A / B;
-                        System.out.printf("Result: A = %.3f\n", A);
-                    } else {
-                        System.out.println("ERROR: Unable to divide by 0!");
-                    }
-                    break;
-
-                case 'c':
-                    A = 0;
-                    B = 0;
-                    System.out.println("Values cleared: A = 0, B = 0");
-                    break;
-
-                default:
-                    System.out.println("ERROR: Unknown command!");
+                case 'q': quitApp();
+                case 'a': a = readNumber(scan, "a");
+                case 'b': b = readNumber(scan, "b");
+                case '+': a = add(a, b);
+                case '-': a = subtract(a, b);
+                case '*': a = multiply(a, b);
+                case '/': a = divide(a, b);
+                case 'c': {
+                    a = 0;
+                    b = 0;
+                    clearValues();
+                }
+                default: System.out.println("ERROR: Unknown command!");
             }
 
             System.out.println(); // Add an empty line for readability
         }
 
         scan.close();
+    }
+
+    // --- Helper Methods ---
+
+    public static void printMenu(float a, float b) {
+        System.out.println("-----------------------------------------------");
+        System.out.println("ChavviCalc Menu");
+        System.out.println("-----------------------------------------------");
+        System.out.printf("a = %.3f       b = %.3f\n", a, b);
+        System.out.println("-----------------------------------------------");
+        System.out.println("a - Enter number for a");
+        System.out.println("b - Enter number for b");
+        System.out.println("+ - a = a + b");
+        System.out.println("- - a = a - b");
+        System.out.println("* - a = a * b");
+        System.out.println("/ - a = a / b");
+        System.out.println("c - Clear values (a=0, b=0)");
+        System.out.println("q - Quit the app");
+        System.out.println("-----------------------------------------------");
+    }
+
+    public static char getUserCommand(Scanner scan) {
+        System.out.print("Enter a command: ");
+        String input = scan.nextLine();
+        return (input.length() > 0) ? Character.toLowerCase(input.charAt(0)) : '_';
+    }
+
+    public static float readNumber(Scanner scan, String variableName) {
+        System.out.print("Enter a number for " + variableName + ": ");
+        try {
+            return Float.parseFloat(scan.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("ERROR: Invalid input! Please enter a number.");
+            return 0; // default value if input is invalid
+        }
+    }
+
+    public static float add(float a, float b) {
+        float result = a + b;
+        System.out.printf("Result: a = %.3f\n", result);
+        return result;
+    }
+
+    public static float subtract(float a, float b) {
+        float result = a - b;
+        System.out.printf("Result: a = %.3f\n", result);
+        return result;
+    }
+
+    public static float multiply(float a, float b) {
+        float result = a * b;
+        System.out.printf("Result: a = %.3f\n", result);
+        return result;
+    }
+
+    public static float divide(float a, float b) {
+        if (b != 0) {
+            float result = a / b;
+            System.out.printf("Result: a = %.3f\n", result);
+            return result;
+        } else {
+            System.out.println("ERROR: Unable to divide by 0!");
+            return a; // unchanged
+        }
+    }
+
+    public static void clearValues() {
+        System.out.println("Values cleared: a = 0, b = 0");
+    }
+
+    public static void quitApp() {
+        System.out.println("\nThank you for using ChavviCalc");
+        System.out.println("[Simple Calculator]:");
     }
 }
