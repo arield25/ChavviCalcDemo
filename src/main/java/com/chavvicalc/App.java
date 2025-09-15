@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        float a = 0;
+        float a = 0; 
         float b = 0;
         char command = '_';
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in); 
 
         System.out.println("Press Enter to start ChavviCalc...");
         System.out.print("\033[H\033[2J");
